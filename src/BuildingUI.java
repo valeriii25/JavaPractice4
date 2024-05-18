@@ -65,9 +65,9 @@ public class BuildingUI extends JFrame {
         return floorComboBox;
     }
 
-    public void manageLiftChanges(int elevatorId, int floor, LiftStatus state) {
+    public void manageLiftChanges(int liftId, int floor, LiftStatus state) {
         SwingUtilities.invokeLater(() -> {
-            var panel = liftPanels[elevatorId - 1];
+            var panel = liftPanels[liftId - 1];
             for (var component : panel.getComponents()) {
                 if (component instanceof JLabel label) {
                     if (label.getText().contains("Floor")) {

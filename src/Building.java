@@ -8,12 +8,12 @@ public class Building {
     private static final int MaxRequests = 10;
     private final Random rand = new Random();
 
-    public Building(int numberOfElevators) {
-        for (int i = 1; i <= numberOfElevators; i++) {
+    public Building(int numberOfLifts) {
+        for (int i = 1; i <= numberOfLifts; i++) {
             var lift = new Lift(i, this);
             lifts.add(lift);
-            Thread elevatorThread = new Thread(lift);
-            elevatorThread.start();
+            Thread liftThread = new Thread(lift);
+            liftThread.start();
         }
     }
 
@@ -67,11 +67,11 @@ public class Building {
         }
     }
 
-    public void inRequestOccured(int elevatorId) {
-        createOutRequest(rand.nextInt(10), Request.RequestType.OUT, elevatorId);
+    public void inRequestOccured(int liftId) {
+        createOutRequest(rand.nextInt(10), Request.RequestType.OUT, liftId);
     }
 
-    public void createOutRequest(int floor, Request.RequestType type, int elevatorId) {
-        lifts.get(elevatorId - 1).addRequest(new Request(floor, type));
+    public void createOutRequest(int floor, Request.RequestType type, int liftId) {
+        lifts.get(liftId - 1).addRequest(new Request(floor, type));
     }
 }
