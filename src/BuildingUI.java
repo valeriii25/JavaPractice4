@@ -4,21 +4,21 @@ import java.util.Objects;
 
 public class BuildingUI extends JFrame {
     private final Building building;
-    private final JPanel[] elevatorPanels;
+    private final JPanel[] liftPanels;
 
     public BuildingUI(Building building) {
         this.building = building;
-        this.elevatorPanels = new JPanel[building.lifts.size()];
+        this.liftPanels = new JPanel[building.lifts.size()];
         setTitle("Lifts");
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new GridLayout(1, 3));
         for (int i = 0; i < building.lifts.size(); i++) {
-            elevatorPanels[i] = createLiftPanel(i + 1);
+            liftPanels[i] = createLiftPanel(i + 1);
         }
-        add(elevatorPanels[0]);
+        add(liftPanels[0]);
         add(createControlPanel());
-        add(elevatorPanels[1]);
+        add(liftPanels[1]);
     }
 
     private JPanel createLiftPanel(int liftId) {
@@ -67,7 +67,7 @@ public class BuildingUI extends JFrame {
 
     public void manageLiftChanges(int elevatorId, int floor, LiftStatus state) {
         SwingUtilities.invokeLater(() -> {
-            var panel = elevatorPanels[elevatorId - 1];
+            var panel = liftPanels[elevatorId - 1];
             for (var component : panel.getComponents()) {
                 if (component instanceof JLabel label) {
                     if (label.getText().contains("Floor")) {
